@@ -15,12 +15,11 @@ def index():
 
 @app.route('/postmov', methods = ['POST'])
 def get_post_mov_data():
-    mdata = request.form['movdata']  
-    fitdate,fitdata = record_movement(mdata) 
+    mdata = request.form['movdata']
+    fitdate,fitdata = record_movement(mdata)
     record_fitdata(fitdate,fitdata) #将健身日期和本次动作存入健身数据库
     history_fitdata() #查看所有的健身数据
-    return mdata 
+    return mdata
 
 if __name__ == '__main__':
     app.run(debug=True)
-
