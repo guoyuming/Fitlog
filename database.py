@@ -3,7 +3,7 @@ import sqlite3
 def create_database():
     conn = sqlite3.connect('fitlogtest.db')
     c = conn.cursor()
-    c.execute('''CREATE TABLE IF NOT EXISTS FITDATA
+    c.execute('''CREATE TABLE IF NOT EXISTS FITDATA 
               (TIME    VARCHAR  PRIMARY KEY,
                M1     int,
                M2     int,
@@ -15,8 +15,8 @@ def create_database():
                M8     int,
                M9     int,
                M10    int);''')
-
-
+    
+    
     c.execute('''CREATE TABLE IF NOT EXISTS FITMOVEMENT
               (ID             int  PRIMARY KEY,
                MOVEMENT       text,
@@ -28,7 +28,7 @@ def create_database():
     conn.close()
 
 def export_movement():
-    record = []
+    record = [] 
     conn = sqlite3.connect('fitlogtest.db')
     c = conn.cursor()
     cursor = c.execute("SELECT *from FITMOVEMENT")
@@ -38,7 +38,7 @@ def export_movement():
     return record
 
 def export_fitdata():
-    record = []
+    record = [] 
     conn = sqlite3.connect('fitlogtest.db')
     c = conn.cursor()
     cursor = c.execute("SELECT *from FITDATA")
@@ -46,13 +46,13 @@ def export_fitdata():
         record.append(row)
     conn.close()
     return record
-
+ 
 
 def select_movement(fmid):
     conn = sqlite3.connect('fitlogtest.db')
     c = conn.cursor()
-    c.execute('''SELECT * FROM FITMOVEMENT WHERE ID =?''', (fmid,))
-    result = c.fetchone()
+    c.execute('''SELECT * FROM FITMOVEMENT WHERE ID =?''', (fmid,)) 
+    result = c.fetchone() 
     conn.close()
     return result
 
@@ -62,15 +62,15 @@ def insert_movemnet(fmid,movement,time,frequency,numofgroups,weight,distance):
     try:
         c.execute("INSERT INTO FITMOVEMENT VALUES(?,?,?,?,?,?,?)",(fmid,movement,time,frequency,numofgroups,weight,distance))
     except:
-        c.execute('''UPDATE FITMOVEMENT set MOVEMENT = ?, TIME = ?, FREQUENCY = ?, NUMOFGROUPS = ?, WEIGHT = ?, DISTANCE = ? where ID=?''',(movement,time,frequency,numofgroups,weight,distance,fmid))
+        c.execute('''UPDATE FITMOVEMENT set MOVEMENT = ?, TIME = ?, FREQUENCY = ?, NUMOFGROUPS = ?, WEIGHT = ?, DISTANCE = ? where ID=?''',(movement,time,frequency,numofgroups,weight,distance,fmid))   
     conn.commit()
     conn.close()
 
 def select_fitdata(time):
     conn = sqlite3.connect('fitlogtest.db')
     c = conn.cursor()
-    c.execute('''SELECT * FROM FITDATA WHERE TIME =?''', (time,))
-    result = c.fetchone()
+    c.execute('''SELECT * FROM FITDATA WHERE TIME =?''', (time,)) 
+    result = c.fetchone() 
     conn.close()
     return result
 
@@ -80,7 +80,7 @@ def insert_fitdata(time,m1,m2,m3,m4,m5,m6,m7,m8,m9,m10):
     try:
         c.execute("INSERT INTO FITDATA VALUES(?,?,?,?,?,?,?,?,?,?,?)",(time,m1,m2,m3,m4,m5,m6,m7,m8,m9,m10))
     except:
-        c.execute('''UPDATE FITDATA set M1 = ?, M2 = ?, M3 = ?, M4 = ?, M5 = ?, M6 = ?, M7 = ?, M8 = ? , M9 = ? , M10 = ?   where time=?''',(m1,m2,m3,m4,m5,m6,m7,m8,m9,m10,time))
+        c.execute('''UPDATE FITDATA set M1 = ?, M2 = ?, M3 = ?, M4 = ?, M5 = ?, M6 = ?, M7 = ?, M8 = ? , M9 = ? , M10 = ?   where time=?''',(m1,m2,m3,m4,m5,m6,m7,m8,m9,m10,time))   
     conn.commit()
     conn.close()
 
@@ -126,18 +126,18 @@ def record_movement(movementdata):
             insert_movemnet(fmid,movement,time,frequency,numofgroups,weight,distance)
             fitdata.append(fmid)
             fmid = fmid + 1
-    print (fitdata)
-    return date,fitdata
+    #print (fitdata)
+    return date,fitdata 
 
 def record_fitdata(date,fitdata):
     m=[]
     for i in range(0,10):
-        m.append(0)
+        m.append(0)  
     i = 0
     for j in fitdata:
-        m[i] = j
+        m[i] = j        
         i = i + 1
-    print (m)
+    #print (m)
     insert_fitdata(date,m[0],m[1],m[2],m[3],m[4],m[5],m[6],m[7],m[8],m[9])
 
 def history_fitdata():
@@ -148,7 +148,7 @@ def history_fitdata():
         date_fit = []
         print ("%s运动记录:"%date)
         for j in fit[1:]:
-            k = select_movement(j)
+            k = select_movement(j) 
             if k != None:
                date_fit.append(k)
                fit_str = str(k[1])+"  时间:"+str(k[2])+",次数:"+str(k[3])+",组数:"+str(k[4])+",重量:"+str(k[5])+",距离:"+str(k[6])
@@ -156,7 +156,8 @@ def history_fitdata():
         fitlist =[date,date_fit]
         fit_history.append(fitlist)
     return fit_history
-
+         
 
 if __name__ == "__main__":
     create_database()
+

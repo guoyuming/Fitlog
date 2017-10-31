@@ -3,10 +3,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Add Exercise Form</title>
-    <script src="scripts/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <meta charset="utf-8" />
     <script type="text/javascript">
-      var movrec
+      var movrec 
       function getMov(){
         var daterecord = getTime();
         var category = exercise1.category.value;
@@ -20,7 +20,7 @@
         time + " " + repetition + " " + set + " " + weight + " " + distance+","
         var htmlrec = "已添加运动记录：" + movrec;
         document.getElementById("record").innerHTML=htmlrec;
-        alert("已添加：" + movrec);
+        alert(movrec);
         return movrec
       }
 
@@ -96,12 +96,13 @@
     <input type="text" name="set" placeholder="请输入组数">
     <input type="text" name="weight" placeholder="请输入负重/kg">
     <input type="text" name="distance" placeholder="请输入距离/km">
-    <input id = "theButton" type="submit" name=“addex” value="添加">
+    <input id = "theButton" type="submit" name=“addex” value="添加" ">
   </form>
-  <input id = "lastWeek" type="submit" name=“lastweek” value="一周Fit">
+
   <div id="record" ></div>
 
 
 
 </body>
 </html>
+

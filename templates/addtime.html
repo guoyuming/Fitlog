@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Add time</title>
+    <meta charset="utf-8" />
+    <script type="text/javascript">
+      function getTime()
+      {
+        var today = new Date();
+        var year = today.getFullYear();
+        var month = today.getMonth()+1; // 因为getMonth返回从0开始的整数
+        var day = today.getDate();
+        var str = year+"年"+month+"月"+day+"日";
+        document.getElementById("dateresult").innerHTML=str
+      }
+      setInterval("getTime()", 1000);
+    </script>
+  </head>
+  <body>
+    <div id="dateresult"></div>
+  </body>
+</html>
+
