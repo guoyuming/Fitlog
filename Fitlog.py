@@ -10,6 +10,9 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET','POST'])
 def index():
+    if request.form.get('history') == "历史数据":
+        record = history_fitdata()
+        return render_template('result.html',record = record)
     return render_template('addExercise_form.html')
 
 
