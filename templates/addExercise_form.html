@@ -1,12 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Add Exercise Form</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FitLog</title>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> -->
+    <script src="/static/jquery.min.js"></script>
+    <link href="/static/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+    body {
+    	  color:#fff;
+      	background-color:#333;
+      	font-family: 'microsoft yahei' ,Arial,sans-serif;
+    }
+    .jumbotron {
+      background: url("http://upload-images.jianshu.io/upload_images/201022-c357ecdb77a33c46.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240") no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+    }
+
+    </style>
     <script type="text/javascript">
-      var movrec 
+      var movrec
       function getMov(){
         var daterecord = getTime();
         var category = exercise1.category.value;
@@ -18,8 +36,9 @@
         var distance = exercise1.distance.value;
         movrec = daterecord + " " + exercise + " " +
         time + " " + repetition + " " + set + " " + weight + " " + distance+","
-        var htmlrec = "已添加运动记录：" + movrec;
-        document.getElementById("record").innerHTML=htmlrec;
+        // var htmlrec = "已添加运动记录：" + movrec;
+        // document.getElementById("record").innerHTML=htmlrec;
+        // 以上两行以测试输出一条运动记录
         alert(movrec);
         return movrec
       }
@@ -38,9 +57,9 @@
       // 以上是用以获取当天时间
 
       //这个 请选择 选项 加的很好。
-      var jiaArr = ["请选择","上肢", "下肢", "核心", "功能性"];
+      var jiaArr = ["选择类别","上肢", "下肢", "核心", "功能性"];
       var exampleArr = [
-              ["请选择"],
+              ["选择动作"],
               ["卧推", "哑铃卧推", "俯身划船"],
               ["硬拉", "深蹲", "剪蹲"],
               ["卷腹", "平板支撑"],
@@ -87,29 +106,80 @@
     </script>
 </head>
 <body>
-  <form action="/" method="POST" name="exercise1">
-    <div id="dateresult"></div>
+  <div class="jumbotron">
+    <div class="container">
+      <h1>Hello, FitKeeper!</h1>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <form action="/" method="POST" name="exercise1" class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="formGroupInputLarge">DATE</label>
+            <div class="col-sm-8">
+              <h5 id="dateresult"></h5>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="formGroupInputLarge">CATEGORY</label>
+            <div class="col-sm-8">
+              <select class="form-control" id="jia" name="category" onchange="ChangeExampleSelect(this.selectedIndex)"></select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="formGroupInputLarge">EXERCISE</label>
+            <div class="col-sm-8">
+              <select class="form-control" id="example" name="exercise"></select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="formGroupInputLarge">TIME</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="time" placeholder="请输入时间/分">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="formGroupInputLarge">REP</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="repetition" placeholder="请输入次数">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="formGroupInputLarge">SET</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="set" placeholder="请输入组数">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="formGroupInputLarge">WEIGHT</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="weight" placeholder="请输入负重/kg">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="formGroupInputLarge">DISTANCE</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" name="distance" placeholder="请输入距离/km">
+            </div>
+          </div>
+          <input class="btn btn-primary" id = "theButton" type="submit" name="addex" value="添加">
+          <input class="btn btn-primary" id = "HistoryButton" type="submit" name="history" value="历史数据">
+          <input class="btn btn-primary" id = "lastWeek" type="submit" name="lastweek" value="一周Fit">
+        </form>
+      </div>
+      <div class="col-lg-3">
+        <!-- <div id="record"></div> -->
+      </div>
 
-    <select id="jia" name="category" onchange="ChangeExampleSelect(this.selectedIndex)">
+      <div class="col-lg-3"></div>
+    </div>
+  </div>
+  <div id="content"></div>
 
-    </select>
-    <select id="example" name="exercise">
 
-    </select>
-    <input type="text" name="time" placeholder="请输入时间/分">
-    <input type="text" name="repetition" placeholder="请输入次数">
-    <input type="text" name="set" placeholder="请输入组数">
-    <input type="text" name="weight" placeholder="请输入负重/kg">
-    <input type="text" name="distance" placeholder="请输入距离/km">
-    <input id = "theButton" type="submit" name="addex" value="添加">
-    <input id = "HistoryButton" type="submit" name="history" value="历史数据">
 
-  </form>
-
-  <div id="record" ></div>
-
-  {% block content %}{% endblock %}
+  <!-- {% block content %}{% endblock %} -->
 
 </body>
 </html>
-
