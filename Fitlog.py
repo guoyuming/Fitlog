@@ -4,9 +4,8 @@
 
 from flask import Flask, request, render_template, url_for
 from database import create_database, record_movement,record_fitdata,history_fitdata,Delect_fit,Delect_movement,export_fitdata
-from visual import dataVisual
-# from visual import dataVisual
-
+#from visual import dataVisual      #使用matlab生成
+from visualbokeh import dataVisual  #使用bokeh生成
 
 app = Flask(__name__)
 app._static_folder = 'static'

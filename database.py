@@ -154,13 +154,13 @@ def history_fitdata():
     for fit in record:
         date = fit[0]
         date_fit = []
-        print ("%s运动记录:"%date)
+        #print ("%s运动记录:"%date)
         for j in fit[1:]:
             k = select_movement(j) 
             if k != None:
                date_fit.append(k)
                fit_str = str(k[1])+"  时间:"+str(k[2])+",次数:"+str(k[3])+",组数:"+str(k[4])+",重量:"+str(k[5])+",距离:"+str(k[6])
-               print(fit_str)
+               #print(fit_str)
         fitlist =[date,date_fit]
         fit_history.append(fitlist)
     return fit_history

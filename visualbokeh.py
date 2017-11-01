@@ -4,6 +4,7 @@ import numpy as np
 import sys
 import matplotlib.pyplot as plt
 from bokeh.charts import Bar, output_file, show
+from bokeh.io import export_png
 from bokeh.sampledata.autompg import autompg as df
 
 
@@ -29,15 +30,18 @@ def dataVisual():
         d = {'date': date,
                  'weights':ws}
     st = pd.DataFrame(d)
-    #p = Bar(st,  'date', values='weights', title="深蹲累积" )
+    p = Bar(st,  'date', values='weights', title="深蹲累积" )
     # add a line renderer with legend and line thickness
     #output_file("bar.html")
     #show(p)
-    #plt.bar(date, ws, width, color="blue")
+
+    export_png(p,filename="static/output.png")
+
     #plt.savefig("output.png")
-    p = st.plot.bar(x='date',y='weights')
-    fig = p.get_figure()
-    fig.savefig("static/output.png")
+    #p = st.plot.bar(x='date',y='weights',title="FitAnalyze")
+    #fig = p.get_figure()
+    #fig.savefig("static/output.jpg")
+    #p.figure.savefig("static/output.jpg")
 
 if __name__ == '__main__':
    dataVisual()
