@@ -17,7 +17,7 @@ def index():
         record = history_fitdata()
         return render_template('result.html',record = record)
     elif request.form.get('lastweek') == "一周Fit":
-        dataVisual()
+        # dataVisual()
         return render_template('fitanalyze.html')
 
     return render_template('addExercise_form.html')

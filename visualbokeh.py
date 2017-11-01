@@ -2,8 +2,8 @@
 import pandas as pd
 import numpy as np
 import sys
-import matplotlib.pyplot as plt
-from bokeh.charts import Bar, output_file, show
+# import matplotlib.pyplot as plt
+# from bokeh.charts import Bar, output_file, show
 from bokeh.io import export_png
 from bokeh.sampledata.autompg import autompg as df
 
@@ -19,11 +19,11 @@ def dataVisual():
     sl['weights'] = sl.apply(lambda x: x.repetition*x.set*x.weight, axis=1)
     #列出日期
     Uniquedate = df.date.unique()
-    
+
     #日期和重量累积的矩阵
     date = []
     ws = []
-    
+
     for i in Uniquedate:
         date.append(i)
         ws.append(np.sum(sl[sl['date'].isin([i])])['weights'])
