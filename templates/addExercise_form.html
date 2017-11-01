@@ -39,7 +39,7 @@
         // var htmlrec = "已添加运动记录：" + movrec;
         // document.getElementById("record").innerHTML=htmlrec;
         // 以上两行以测试输出一条运动记录
-        alert(movrec);
+        alert("已添加运动记录：" + movrec);
         return movrec
       }
 
@@ -168,18 +168,19 @@
           <input class="btn btn-primary" id = "lastWeek" type="submit" name="lastweek" value="一周Fit">
         </form>
       </div>
-      <div class="col-lg-3">
+      <div class="col-lg-6">
+        <!-- <div id="content"></div> -->
         <!-- <div id="record"></div> -->
+        {% block content %}{% endblock %}
       </div>
 
-      <div class="col-lg-3"></div>
     </div>
   </div>
-  <div id="content"></div>
 
 
 
-  <!-- {% block content %}{% endblock %} -->
+
+
 
 </body>
 </html>
